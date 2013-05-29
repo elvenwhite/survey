@@ -1,0 +1,145 @@
+<h1>Listing data</h1>
+
+<table>
+  <tr>
+    <th>Mail</th>
+    <th>Where</th>
+    <th>Q4</th>
+    <th>Q5</th>
+    <th>Q6</th>
+    <th>Q7 1</th>
+    <th>Q7 2</th>
+    <th>Q8 1</th>
+    <th>Q8 2</th>
+    <th>Q9 1</th>
+    <th>Q10 1</th>
+    <th>Q10 2</th>
+    <th>Q11 1</th>
+    <th>Q11 2</th>
+    <th>Q12 1</th>
+    <th>Q12 2</th>
+    <th>Q13 1</th>
+    <th>Q13 2</th>
+    <th>Q14 1</th>
+    <th>Q14 2</th>
+    <th>Q15 1</th>
+    <th>Q15 2</th>
+    <th>Q16 1</th>
+    <th>Q16 2</th>
+    <th>Q17 1</th>
+    <th>Q17 2</th>
+    <th>Q18 1</th>
+    <th>Q18 2</th>
+    <th>Q19 1</th>
+    <th>Q19 2</th>
+    <th>Q20 1</th>
+    <th>Q20 2</th>
+    <th>Q21 1</th>
+    <th>Q21 2</th>
+    <th>Q22 1</th>
+    <th>Q22 2</th>
+    <th>Q23 1</th>
+    <th>Q23 2</th>
+    <th>Q24</th>
+    <th>Q25</th>
+    <th>Q26 1</th>
+    <th>Q26 2</th>
+    <th>Q27 1</th>
+    <th>Q27 2</th>
+    <th>Q28 1</th>
+    <th>Q28 2</th>
+    <th>Q29 1</th>
+    <th>Q29 2</th>
+    <th>Q30 1</th>
+    <th>Q30 2</th>
+    <th>Q31 1</th>
+    <th>Q31 2</th>
+    <th>Q32 1</th>
+    <th>Q32 2</th>
+    <th>Q33 1</th>
+    <th>Q33 2</th>
+    <th>Q34 1</th>
+    <th>Q34 2</th>
+    <th>Q35</th>
+    <th>Q36</th>
+    <th>Q37</th>
+    <th>Q38</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @data.each do |datum| %>
+  <tr>
+    <td><%= datum.mail %></td>
+    <td><%= datum.where %></td>
+    <td><%= datum.q4 %></td>
+    <td><%= datum.q5 %></td>
+    <td><%= datum.q6 %></td>
+    <td><%= datum.q7_1 %></td>
+    <td><%= datum.q7_2 %></td>
+    <td><%= datum.q8_1 %></td>
+    <td><%= datum.q8_2 %></td>
+    <td><%= datum.q9_1 %></td>
+    <td><%= datum.q10_1 %></td>
+    <td><%= datum.q10_2 %></td>
+    <td><%= datum.q11_1 %></td>
+    <td><%= datum.q11_2 %></td>
+    <td><%= datum.q12_1 %></td>
+    <td><%= datum.q12_2 %></td>
+    <td><%= datum.q13_1 %></td>
+    <td><%= datum.q13_2 %></td>
+    <td><%= datum.q14_1 %></td>
+    <td><%= datum.q14_2 %></td>
+    <td><%= datum.q15_1 %></td>
+    <td><%= datum.q15_2 %></td>
+    <td><%= datum.q16_1 %></td>
+    <td><%= datum.q16_2 %></td>
+    <td><%= datum.q17_1 %></td>
+    <td><%= datum.q17_2 %></td>
+    <td><%= datum.q18_1 %></td>
+    <td><%= datum.q18_2 %></td>
+    <td><%= datum.q19_1 %></td>
+    <td><%= datum.q19_2 %></td>
+    <td><%= datum.q20_1 %></td>
+    <td><%= datum.q20_2 %></td>
+    <td><%= datum.q21_1 %></td>
+    <td><%= datum.q21_2 %></td>
+    <td><%= datum.q22_1 %></td>
+    <td><%= datum.q22_2 %></td>
+    <td><%= datum.q23_1 %></td>
+    <td><%= datum.q23_2 %></td>
+    <td><%= datum.q24 %></td>
+    <td><%= datum.q25 %></td>
+    <td><%= datum.q26_1 %></td>
+    <td><%= datum.q26_2 %></td>
+    <td><%= datum.q27_1 %></td>
+    <td><%= datum.q27_2 %></td>
+    <td><%= datum.q28_1 %></td>
+    <td><%= datum.q28_2 %></td>
+    <td><%= datum.q29_1 %></td>
+    <td><%= datum.q29_2 %></td>
+    <td><%= datum.q30_1 %></td>
+    <td><%= datum.q30_2 %></td>
+    <td><%= datum.q31_1 %></td>
+    <td><%= datum.q31_2 %></td>
+    <td><%= datum.q32_1 %></td>
+    <td><%= datum.q32_2 %></td>
+    <td><%= datum.q33_1 %></td>
+    <td><%= datum.q33_2 %></td>
+    <td><%= datum.q34_1 %></td>
+    <td><%= datum.q34_2 %></td>
+    <td><%= datum.q35 %></td>
+    <td><%= datum.q36 %></td>
+    <td><%= datum.q37 %></td>
+    <td><%= datum.q38 %></td>
+    <td><%= link_to 'Show', datum %></td>
+    <td><%= link_to 'Edit', edit_datum_path(datum) %></td>
+    <td><%= link_to 'Destroy', datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Datum', new_datum_path %>

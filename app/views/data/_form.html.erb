@@ -1,0 +1,300 @@
+<%= form_for(@datum) do |f| %>
+  <% if @datum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@datum.errors.count, "error") %> prohibited this datum from being saved:</h2>
+
+      <ul>
+      <% @datum.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="explanation">
+    1. 아래 설문조사에 답변해주세요.
+  </div>
+
+  <div class="field">
+    2. 이메일 주소를 입력해주십시오. 이 정보는 경품의 제공을 위해서만 사용됩니다.
+<br />
+    <%= f.text_field :mail %>
+  </div>
+    <div class="explanation">
+다음은 개발 위치에 관한 질문입니다.
+  </div>
+
+  <div class="field">
+3. 개발자께서는 서울 혹은 제주 어느 곳에서 근무하십니까?
+<br />
+    
+     <% collection = {'1'=>'서울', '2'=>'제주' } %>
+     <% collection.each do |where,wlabel| %>
+    <%= radio_button_tag 'where', where, @where == where %>
+    <%= label_tag "where_#{where}", wlabel %>
+    <%end %>
+
+
+  </div>
+  <div class="field">
+4. 작업중이신 프로젝트는 서울/제주 각각 몇 명의 개발자가 함께 일하고 있습니까?
+<br />
+    <%= f.text_field :q4 %>
+  </div>
+  <div class="field">
+ 5. 작업중이신 프로젝트 팀에서, 서울/제주 각각 몇 명의 개발자와 매일 작업과 관계 <b><u>없는</u></b> 대화를 나누십니까?
+<br />
+    <%= f.text_field :q5 %>
+  </div>
+  <div class="field">
+     6. 작업중이신 프로젝트 팀에서, 서울/제주 각각 몇 명의 개발자와 매일 작업과 관계 <b><u>있는</u></b> 대화를 나누십니까?
+<br />
+    <%= f.text_field :q6 %>
+  </div>
+    <div class="explanation">
+다음은 개발자간의 관계에 관한 질문입니다. 현재 작업중이신 곳(서울 혹은 제주) / 다른 곳 (서울 혹은 제주)의 동료에 대해 각각 가장 어울린다고 생각되는 답변을 골라 주십시오.
+  </div>
+
+
+  <div class="field">
+  7. 나는 작업 중 떠오르는 착상이나 느낌을 내 동료들과 편하게 공유한다. 
+  <br>(현재 작업중인 곳)<br />
+
+     <% collection = {'1'=>'매우 그렇다', '2'=>'그런 편이다', '3'=>'보통이다', '4'=>'그렇지 않은 편이다', '5'=>'매우 그렇지 않다' } %>
+     <% collection.each do |q7_1,qlabel| %>
+    <%= radio_button_tag 'q7_1', q7_1, @q7_1 == q7_1 %>
+    <%= label_tag "q7_1_#{q7_1}", qlabel %>
+   <% end %>
+
+<br>(다른 곳)<br />
+    <% collection.each do |q7_2,qlabel| %>
+    <%= radio_button_tag 'q7_2', q7_2, @q7_2 == q7_2 %>
+    <%= label_tag "q7_2_#{q7_2}", qlabel %>
+   <% end %>  </div>
+  <div class="field">
+    8. 전체적으로 내 동료들은 매우 믿을 만 하다. 
+    <br>(현재 작업중인 곳)<br />
+     <% collection.each do |q8_1,qlabel| %>
+    <%= radio_button_tag 'q8_1', q8_1, @q8_1 == q8_1 %>
+    <%= label_tag "q8_1_#{q8_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q8_2,qlabel| %>
+    <%= radio_button_tag 'q8_2', q8_2, @q8_2 == q8_2 %>
+    <%= label_tag "q8_2_#{q8_2}", qlabel %>
+   <% end %>  </div>
+  <div class="field">
+    <%= f.label :q9_1 %><br />
+    <%= f.text_field :q9_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q10_1 %><br />
+    <%= f.text_field :q10_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q10_2 %><br />
+    <%= f.text_field :q10_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q11_1 %><br />
+    <%= f.text_field :q11_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q11_2 %><br />
+    <%= f.text_field :q11_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q12_1 %><br />
+    <%= f.text_field :q12_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q12_2 %><br />
+    <%= f.text_field :q12_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q13_1 %><br />
+    <%= f.text_field :q13_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q13_2 %><br />
+    <%= f.text_field :q13_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q14_1 %><br />
+    <%= f.text_field :q14_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q14_2 %><br />
+    <%= f.text_field :q14_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q15_1 %><br />
+    <%= f.text_field :q15_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q15_2 %><br />
+    <%= f.text_field :q15_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q16_1 %><br />
+    <%= f.text_field :q16_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q16_2 %><br />
+    <%= f.text_field :q16_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q17_1 %><br />
+    <%= f.text_field :q17_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q17_2 %><br />
+    <%= f.text_field :q17_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q18_1 %><br />
+    <%= f.text_field :q18_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q18_2 %><br />
+    <%= f.text_field :q18_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q19_1 %><br />
+    <%= f.text_field :q19_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q19_2 %><br />
+    <%= f.text_field :q19_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q20_1 %><br />
+    <%= f.text_field :q20_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q20_2 %><br />
+    <%= f.text_field :q20_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q21_1 %><br />
+    <%= f.text_field :q21_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q21_2 %><br />
+    <%= f.text_field :q21_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q22_1 %><br />
+    <%= f.text_field :q22_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q22_2 %><br />
+    <%= f.text_field :q22_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q23_1 %><br />
+    <%= f.text_field :q23_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q23_2 %><br />
+    <%= f.text_field :q23_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q24 %><br />
+    <%= f.text_field :q24 %>
+  </div>
+  <div class="field">
+    <%= f.label :q25 %><br />
+    <%= f.text_field :q25 %>
+  </div>
+  <div class="field">
+    <%= f.label :q26_1 %><br />
+    <%= f.text_field :q26_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q26_2 %><br />
+    <%= f.text_field :q26_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q27_1 %><br />
+    <%= f.text_field :q27_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q27_2 %><br />
+    <%= f.text_field :q27_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q28_1 %><br />
+    <%= f.text_field :q28_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q28_2 %><br />
+    <%= f.text_field :q28_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q29_1 %><br />
+    <%= f.text_field :q29_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q29_2 %><br />
+    <%= f.text_field :q29_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q30_1 %><br />
+    <%= f.text_field :q30_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q30_2 %><br />
+    <%= f.text_field :q30_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q31_1 %><br />
+    <%= f.text_field :q31_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q31_2 %><br />
+    <%= f.text_field :q31_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q32_1 %><br />
+    <%= f.text_field :q32_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q32_2 %><br />
+    <%= f.text_field :q32_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q33_1 %><br />
+    <%= f.text_field :q33_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q33_2 %><br />
+    <%= f.text_field :q33_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q34_1 %><br />
+    <%= f.text_field :q34_1 %>
+  </div>
+  <div class="field">
+    <%= f.label :q34_2 %><br />
+    <%= f.text_field :q34_2 %>
+  </div>
+  <div class="field">
+    <%= f.label :q35 %><br />
+    <%= f.text_area :q35 %>
+  </div>
+  <div class="field">
+    <%= f.label :q36 %><br />
+    <%= f.text_field :q36 %>
+  </div>
+  <div class="field">
+    <%= f.label :q37 %><br />
+    <%= f.text_field :q37 %>
+  </div>
+  <div class="field">
+    <%= f.label :q38 %><br />
+    <%= f.text_field :q38 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
