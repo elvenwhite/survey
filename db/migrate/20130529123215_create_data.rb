@@ -3,14 +3,18 @@ class CreateData < ActiveRecord::Migration
     create_table :data do |t|
       t.string :mail
       t.decimal :where
-      t.decimal :q4
-      t.decimal :q5
-      t.decimal :q6
+      t.decimal :q4_1
+      t.decimal :q4_2
+      t.decimal :q5_1
+      t.decimal :q5_2
+      t.decimal :q6_1
+      t.decimal :q6_2
       t.decimal :q7_1
       t.decimal :q7_2
       t.decimal :q8_1
       t.decimal :q8_2
       t.decimal :q9_1
+      t.decimal :q9_2      
       t.decimal :q10_1
       t.decimal :q10_2
       t.decimal :q11_1

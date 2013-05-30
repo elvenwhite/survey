@@ -1,8 +1,12 @@
 class DataController < ApplicationController
+
+  # before_filter :authorize, :only => [:index, :destroy, :show]
+
   # GET /data
   # GET /data.json
   def index
-    @data = Datum.all
+
+    # @data = Datum.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +17,7 @@ class DataController < ApplicationController
   # GET /data/1
   # GET /data/1.json
   def show
-    @datum = Datum.find(params[:id])
+    # @datum = Datum.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,7 +48,8 @@ class DataController < ApplicationController
 
     respond_to do |format|
       if @datum.save
-        format.html { redirect_to @datum, notice: 'Datum was successfully created.' }
+        format.html {redirect_to("/thanks.html")}
+        # format.html { redirect_to @datum, notice: 'Datum was successfully created.' }
         format.json { render json: @datum, status: :created, location: @datum }
       else
         format.html { render action: "new" }
@@ -80,4 +85,12 @@ class DataController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # protected
+  # def authorize
+  #   unless User.find_by_id(session[:user_id])
+  #     redirect_to login_url, :notice => "Please log in"
+  #   end 
+  # end
+
 end

@@ -1,7 +1,7 @@
 <%= form_for(@datum) do |f| %>
   <% if @datum.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@datum.errors.count, "error") %> prohibited this datum from being saved:</h2>
+      <h2><%= pluralize(@datum.errors.count, "") %> 개의 문항에 답을 하지 않으셨습니다.</h2>
 
       <ul>
       <% @datum.errors.full_messages.each do |msg| %>
@@ -24,34 +24,35 @@
   </div>
 
   <div class="field">
-3. 개발자께서는 서울 혹은 제주 어느 곳에서 근무하십니까?
+3. 개발자께서는 주 개발지 혹은 부속 개발지 어느 곳에서 근무하십니까?
 <br />
     
-     <% collection = {'1'=>'서울', '2'=>'제주' } %>
+     <% collection = {'1'=>'주 개발지', '2'=>'부속 개발지' } %>
      <% collection.each do |where,wlabel| %>
-    <%= radio_button_tag 'where', where, @where == where %>
-    <%= label_tag "where_#{where}", wlabel %>
+     <%= radio_button 'datum', 'where', where %> 
+    
+    <%= label_tag "datum_where_#{where}", wlabel %>
     <%end %>
 
+  </div>
+  <div class="field">
+4. 작업중이신 프로젝트는 주/부 개발팀 각각 몇 명의 개발자가 함께 일하고 있습니까?
+<br />
+    주 개발팀 <%= f.text_field :q4_1 %> 부 개발팀     <%= f.text_field :q4_2 %>
+  </div>
+  <div class="field">
+ 5. 작업중이신 프로젝트 팀에서, 팀별로 몇 명의 개발자와 매일 작업과 관계 <b><u>없는</u></b> 대화를 나누십니까?
+<br />
+    자신이 있는 곳의 개발자 가운데 <%= f.text_field :q5_1 %> 명, 다른 곳의 개발자 가운데     <%= f.text_field :q5_2 %> 명
 
   </div>
   <div class="field">
-4. 작업중이신 프로젝트는 서울/제주 각각 몇 명의 개발자가 함께 일하고 있습니까?
+     6. 작업중이신 프로젝트 팀에서, 팀별로 각각 몇 명의 개발자와 매일 작업과 관계 <b><u>있는</u></b> 대화를 나누십니까?
 <br />
-    <%= f.text_field :q4 %>
-  </div>
-  <div class="field">
- 5. 작업중이신 프로젝트 팀에서, 서울/제주 각각 몇 명의 개발자와 매일 작업과 관계 <b><u>없는</u></b> 대화를 나누십니까?
-<br />
-    <%= f.text_field :q5 %>
-  </div>
-  <div class="field">
-     6. 작업중이신 프로젝트 팀에서, 서울/제주 각각 몇 명의 개발자와 매일 작업과 관계 <b><u>있는</u></b> 대화를 나누십니까?
-<br />
-    <%= f.text_field :q6 %>
+    자신이 있는 곳의 개발자 가운데 <%= f.text_field :q6_1 %> 명, 다른 곳의 개발자 가운데     <%= f.text_field :q6_2 %> 명
   </div>
     <div class="explanation">
-다음은 개발자간의 관계에 관한 질문입니다. 현재 작업중이신 곳(서울 혹은 제주) / 다른 곳 (서울 혹은 제주)의 동료에 대해 각각 가장 어울린다고 생각되는 답변을 골라 주십시오.
+다음은 개발자간의 관계에 관한 질문입니다. 현재 작업중이신 곳 / 다른 곳의 동료에 대해 각각 가장 어울린다고 생각되는 답변을 골라 주십시오.
   </div>
 
 
@@ -61,240 +62,440 @@
 
      <% collection = {'1'=>'매우 그렇다', '2'=>'그런 편이다', '3'=>'보통이다', '4'=>'그렇지 않은 편이다', '5'=>'매우 그렇지 않다' } %>
      <% collection.each do |q7_1,qlabel| %>
-    <%= radio_button_tag 'q7_1', q7_1, @q7_1 == q7_1 %>
-    <%= label_tag "q7_1_#{q7_1}", qlabel %>
+    <%= radio_button 'datum', 'q7_1', q7_1 %>
+    <%= label_tag "datum_q7_1_#{q7_1}", qlabel %>
    <% end %>
 
 <br>(다른 곳)<br />
     <% collection.each do |q7_2,qlabel| %>
-    <%= radio_button_tag 'q7_2', q7_2, @q7_2 == q7_2 %>
-    <%= label_tag "q7_2_#{q7_2}", qlabel %>
+    <%= radio_button 'datum', 'q7_2', q7_2 %>
+    <%= label_tag "datum_q7_2_#{q7_2}", qlabel %>
    <% end %>  </div>
   <div class="field">
     8. 전체적으로 내 동료들은 매우 믿을 만 하다. 
     <br>(현재 작업중인 곳)<br />
      <% collection.each do |q8_1,qlabel| %>
-    <%= radio_button_tag 'q8_1', q8_1, @q8_1 == q8_1 %>
-    <%= label_tag "q8_1_#{q8_1}", qlabel %>
+    <%= radio_button 'datum', 'q8_1', q8_1 %>
+    <%= label_tag "datum_q8_1_#{q8_1}", qlabel %>
    <% end %>  
    <br> (다른 곳)<br />
      <% collection.each do |q8_2,qlabel| %>
-    <%= radio_button_tag 'q8_2', q8_2, @q8_2 == q8_2 %>
-    <%= label_tag "q8_2_#{q8_2}", qlabel %>
+    <%= radio_button 'datum', 'q8_2', q8_2 %>
+    <%= label_tag "datum_q8_2_#{q8_2}", qlabel %>
    <% end %>  </div>
+
+
+
   <div class="field">
-    <%= f.label :q9_1 %><br />
-    <%= f.text_field :q9_1 %>
+9. 내 동료들과 나는 서로간의 감정에 대해서 고려하며 작업하는 편이다. 
+    <br>(현재 작업중인 곳)<br />
+     <% collection.each do |q9_1,qlabel| %>
+    <%= radio_button 'datum', 'q9_1', q9_1 %>
+    <%= label_tag "datum_q9_1_#{q9_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q9_2,qlabel| %>
+    <%= radio_button 'datum', 'q9_2', q9_2 %>
+    <%= label_tag "datum_q9_2_#{q9_2}", qlabel %>
+   <% end %>  </div>
+
+
+  <div class="field">
+10. 내 동료들은 서로 친근하게 대한다.
+    <br>(현재 작업중인 곳)<br />
+     <% collection.each do |q10_1,qlabel| %>
+    <%= radio_button 'datum', 'q10_1', q10_1 %>
+    <%= label_tag "datum_q10_1_#{q10_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q10_2,qlabel| %>
+    <%= radio_button 'datum', 'q10_2', q10_2 %>
+    <%= label_tag "datum_q10_2_#{q10_2}", qlabel %>
+   <% end %>  </div>
+
+
+  <div class="field">
+11. 필요하다면 나는 내 동료들에게 의지할 수 있다.
+    <br>(현재 작업중인 곳)<br />
+     <% collection.each do |q11_1,qlabel| %>
+    <%= radio_button 'datum', 'q11_1', q11_1 %>
+    <%= label_tag "datum_q11_1_#{q11_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q11_2,qlabel| %>
+    <%= radio_button 'datum', 'q11_2', q11_2 %>
+    <%= label_tag "datum_q11_2_#{q11_2}", qlabel %>
+   <% end %>  </div>
+
+  <div class="field">
+12. 나는 내 동료들과 작업 이외의 문제에 대해서도 상의하는 편이다.
+    <br>(현재 작업중인 곳)<br />
+     <% collection.each do |q12_1,qlabel| %>
+    <%= radio_button 'datum', 'q12_1', q12_1 %>
+    <%= label_tag "datum_q12_1_#{q12_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q12_2,qlabel| %>
+    <%= radio_button 'datum', 'q12_2', q12_2 %>
+    <%= label_tag "datum_q12_2_#{q12_2}", qlabel %>
+   <% end %>  </div>
+
+    <div class="explanation">
+다음은 작업 분위기에 대한 질문입니다. 현재 작업중이신 곳/ 다른 곳의 동료에 대해 각각 가장 어울린다고 생각되는 답변을 골라 주십시오.
+  </div>
+
+
+  <div class="field">
+13. 나는 내 동료들과 같은 팀이라는 소속감을 느낀다.
+    <br>(현재 작업중인 곳)<br />
+     <% collection.each do |q13_1,qlabel| %>
+    <%= radio_button 'datum', 'q13_1', q13_1 %>
+    <%= label_tag "datum_q13_1_#{q13_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q13_2,qlabel| %>
+    <%= radio_button 'datum', 'q13_2', q13_2 %>
+    <%= label_tag "datum_q13_2_#{q13_2}", qlabel %>
+   <% end %>  </div>
+
+  <div class="field">
+14. 나는 꼭 요구받지 않더라도 동료의 작업량이 많다면 도와주려고 한다. 
+    <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q14_1,qlabel| %>
+    <%= radio_button 'datum', 'q14_1', q14_1 %>
+    <%= label_tag "datum_q14_1_#{q14_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q14_2,qlabel| %>
+    <%= radio_button 'datum', 'q14_2', q14_2 %>
+    <%= label_tag "datum_q14_2_#{q14_2}", qlabel %>
+   <% end %>  </div>
+
+  <div class="field">
+15. 내 동료들은 그들이 꼭 요구받지 않더라도 내 작업량이 많다면 도와주려고 하는 편이다. 
+    <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q15_1,qlabel| %>
+    <%= radio_button 'datum', 'q15_1', q15_1 %>
+    <%= label_tag "datum_q15_1_#{q15_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q15_2,qlabel| %>
+    <%= radio_button 'datum', 'q15_2', q15_2 %>
+    <%= label_tag "datum_q15_2_#{q15_2}", qlabel %>
+   <% end %>  </div>
+
+  <div class="field">
+16. 나는 아직 확실하지 않더라도 작업에 관련된 새로운 정보가 생겼을때 그 정보를 동료들에게 제공하려고 한다.
+  <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q16_1,qlabel| %>
+    <%= radio_button 'datum', 'q16_1', q16_1 %>
+    <%= label_tag "datum_q16_1_#{q16_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q16_2,qlabel| %>
+    <%= radio_button 'datum', 'q16_2', q16_2 %>
+    <%= label_tag "datum_q16_2_#{q16_2}", qlabel %>
+   <% end %>  </div>
+
+  <div class="field">
+17. 내 동료들은 아직 확실하지 않은 작업에 관련된 새로운 정보를 나에게 공유하는 편이다.
+  <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q17_1,qlabel| %>
+    <%= radio_button 'datum', 'q17_1', q17_1 %>
+    <%= label_tag "datum_q17_1_#{q17_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q17_2,qlabel| %>
+    <%= radio_button 'datum', 'q17_2', q17_2 %>
+    <%= label_tag "datum_q17_2_#{q17_2}", qlabel %>
+   <% end %>  </div>
+
+    <div class="explanation">
+다음은 소통과 공동작업에 관한 질문입니다. 현재 작업중이신 곳/ 다른 곳의 동료에 대해 각각 가장 어울린다고 생각되는 답변을 골라 주십시오.<br/>  몇몇 문항들은 다른 곳에 대해서만 답변이 가능합니다.
+  </div>
+
+
+
+  <div class="field">
+18. 내 동료들은 계획이 변경되었을 때 바로바로 필요한 정보들을 제공해준다.
+
+      <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q18_1,qlabel| %>
+    <%= radio_button 'datum', 'q18_1', q18_1 %>
+    <%= label_tag "datum_q18_1_#{q18_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q18_2,qlabel| %>
+    <%= radio_button 'datum', 'q18_2', q18_2 %>
+    <%= label_tag "datum_q18_2_#{q18_2}", qlabel %>
+   <% end %>  </div>
+
+
+  <div class="field">
+19. 조직 내에서 앞으로의 개발계획이 명확하게 짜여져 있다.
+
+
+      <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q19_1,qlabel| %>
+    <%= radio_button 'datum', 'q19_1', q19_1 %>
+    <%= label_tag "datum_q19_1_#{q19_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q19_2,qlabel| %>
+    <%= radio_button 'datum', 'q19_2', q19_2 %>
+    <%= label_tag "datum_q19_2_#{q19_2}", qlabel %>
+   <% end %>  </div>
+
+  <div class="field">
+20. 작업 간의 우선순위에 대한 이견이 종종 발생한다.
+     <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q20_1,qlabel| %>
+    <%= radio_button 'datum', 'q20_1', q20_1 %>
+    <%= label_tag "datum_q20_1_#{q20_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q20_2,qlabel| %>
+    <%= radio_button 'datum', 'q20_2', q20_2 %>
+    <%= label_tag "datum_q20_2_#{q20_2}", qlabel %>
+   <% end %>  </div>
+
+
+
+  <div class="field">
+21. 작업이 배정되고 나면, 조직 내 모두가 본인의 역할에 대해 잘 알고 있게 된다.
+       <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q21_1,qlabel| %>
+    <%= radio_button 'datum', 'q21_1', q21_1 %>
+    <%= label_tag "datum_q21_1_#{q21_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q21_2,qlabel| %>
+    <%= radio_button 'datum', 'q21_2', q21_2 %>
+    <%= label_tag "datum_q21_2_#{q21_2}", qlabel %>
+   <% end %>  </div>
+
+  <div class="field">
+22. 내가 일을 하려면 내 동료들이 오늘 어떤 작업을 하고 있을지를 알아둘 필요가 있다.
+       <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q22_1,qlabel| %>
+    <%= radio_button 'datum', 'q22_1', q22_1 %>
+    <%= label_tag "datum_q22_1_#{q22_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q22_2,qlabel| %>
+    <%= radio_button 'datum', 'q22_2', q22_2 %>
+    <%= label_tag "datum_q22_2_#{q22_2}", qlabel %>
+   <% end %>  </div>
+
+
+  <div class="field">
+23. 작업 외의 대화를 나누다가 작업 관련된 정보를 얻게 되는 일이 종종 있다. 
+       <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q23_1,qlabel| %>
+    <%= radio_button 'datum', 'q23_1', q23_1 %>
+    <%= label_tag "datum_q23_1_#{q23_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q23_2,qlabel| %>
+    <%= radio_button 'datum', 'q23_2', q23_2 %>
+    <%= label_tag "datum_q23_2_#{q23_2}", qlabel %>
+   <% end %>  </div>
+
+  <div class="field">
+24. 내가 일을 하려면 다른 곳에서 진행중인 작업 관련 정보 혹은 결과물이 필요하다.  
+   <br> (다른 곳)<br />
+     <% collection.each do |q24,qlabel| %>
+    <%= radio_button 'datum', 'q24', q24 %>
+    <%= label_tag "datum_q24_#{q24}", qlabel %>
+   <% end %>  </div>
+
+  <div class="field">
+25. 나는 다른 곳에서 작업중인 동료와 상담 내지 회의를 가져야 한다.
+   <br> (다른 곳)<br />
+     <% collection.each do |q25,qlabel| %>
+    <%= radio_button 'datum', 'q25', q25 %>
+    <%= label_tag "datum_q25_#{q25}", qlabel %>
+   <% end %>  </div>
+
+   <div class="explanation">
+다음은 정보 교환에 대한 질문입니다. 현재 작업중이신 곳/ 다른 곳의 동료에 대해 각각 가장 어울린다고 생각되는 답변을 골라 주십시오.
+  </div>
+
+
+  <div class="field">
+26. 내 동료들과 회의 시간을 잡는 데 어려움이 있다.
+   <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q26_1,qlabel| %>
+    <%= radio_button 'datum', 'q26_1', q26_1 %>
+    <%= label_tag "datum_q26_1_#{q26_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q26_2,qlabel| %>
+    <%= radio_button 'datum', 'q26_2', q26_2 %>
+    <%= label_tag "datum_q26_2_#{q26_2}", qlabel %>
+   <% end %>  </div>
+
+  <div class="field">
+27. 내가 대화를 필요로 하는 동료와 연락하기가 어렵다.
+   <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q27_1,qlabel| %>
+    <%= radio_button 'datum', 'q27_1', q27_1 %>
+    <%= label_tag "datum_q27_1_#{q27_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q27_2,qlabel| %>
+    <%= radio_button 'datum', 'q27_2', q27_2 %>
+    <%= label_tag "datum_q27_2_#{q27_2}", qlabel %>
+   <% end %>  </div>
+
+
+  <div class="field">
+28. 지난 한 달 동안, 대략 몇 차례나 동료로부터의 연락, 회의, 결정을 기다리느라 작업을 멈춘 일이 있었습니까?
+   <br>(현재 작업중인 곳)<br />
+    <%= f.text_field :q28_1 %> 회
+   <br> (다른 곳)<br />
+    <%= f.text_field :q28_2 %> 회
   </div>
   <div class="field">
-    <%= f.label :q10_1 %><br />
-    <%= f.text_field :q10_1 %>
+29. 28번 문항의 기다림이 있었다면, 평균적으로 얼마나 기다려야 했습니까?
+   <br>(현재 작업중인 곳)<br />
+    <%= f.text_field :q29_1 %> 시간
+   <br> (다른 곳)<br />
+    <%= f.text_field :q29_2 %> 시간
   </div>
+
   <div class="field">
-    <%= f.label :q10_2 %><br />
-    <%= f.text_field :q10_2 %>
-  </div>
+30. 나는 어떤 문제가 생겼을 때 누구와 이 문제를 상담해야 할 지 찾는 데 어려움을 겪는다.
+       <br>(결국 현재 작업중인 곳에서 발생한 문제였을 때)<br />
+
+     <% collection.each do |q30_1,qlabel| %>
+    <%= radio_button 'datum', 'q30_1', q30_1 %>
+    <%= label_tag "datum_q30_1_#{q30_1}", qlabel %>
+   <% end %>  
+   <br> (결국 다른 곳에서 발생한 문제였을 )<br />
+     <% collection.each do |q30_2,qlabel| %>
+    <%= radio_button 'datum', 'q30_2', q30_2 %>
+    <%= label_tag "datum_q30_2_#{q30_2}", qlabel %>
+   <% end %>  </div>
+
+
   <div class="field">
-    <%= f.label :q11_1 %><br />
-    <%= f.text_field :q11_1 %>
+    31. 내 작업에 필요한 정보를 동료들은 알고 있는데 나만 모르고 있었던 일이 있다.
+   <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q31_1,qlabel| %>
+    <%= radio_button 'datum', 'q31_1', q31_1 %>
+    <%= label_tag "datum_q31_1_#{q31_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q31_2,qlabel| %>
+    <%= radio_button 'datum', 'q31_2', q31_2 %>
+    <%= label_tag "datum_q31_2_#{q31_2}", qlabel %>
+   <% end %>  </div>
+
+   <div class="explanation">
+다음은 소통 형태에 대한 질문입니다. 현재 작업중이신 곳/ 다른 곳의 동료에 대해 각각 가장 어울린다고 생각되는 답변을 골라 주십시오.
   </div>
+
+
+
   <div class="field">
-    <%= f.label :q11_2 %><br />
-    <%= f.text_field :q11_2 %>
-  </div>
+32. 동료들에게 이메일을 보내면 보통 하루안에 답장이 올 것으로 기대한다.
+      <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q32_1,qlabel| %>
+    <%= radio_button 'datum', 'q32_1', q32_1 %>
+    <%= label_tag "datum_q32_1_#{q32_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q32_2,qlabel| %>
+    <%= radio_button 'datum', 'q32_2', q32_2 %>
+    <%= label_tag "datum_q32_2_#{q32_2}", qlabel %>
+   <% end %>  </div>
+
+
+
   <div class="field">
-    <%= f.label :q12_1 %><br />
-    <%= f.text_field :q12_1 %>
-  </div>
+33. 동료들에게 메신저나 카카오톡 등로 말을 걸면 보통 한 시간 안에 답장이 올 것으로 기대한다.
+    <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q33_1,qlabel| %>
+    <%= radio_button 'datum', 'q33_1', q33_1 %>
+    <%= label_tag "datum_q33_1_#{q33_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q33_2,qlabel| %>
+    <%= radio_button 'datum', 'q33_2', q33_2 %>
+    <%= label_tag "datum_q33_2_#{q33_2}", qlabel %>
+   <% end %>  </div>
+
+
   <div class="field">
-    <%= f.label :q12_2 %><br />
-    <%= f.text_field :q12_2 %>
-  </div>
+34. 동료가 휴가 등의 이유로 회사에 없을 경우, 나는 그 사실을 알고 있어서 헛탕치지 않는다.
+    <br>(현재 작업중인 곳)<br />
+
+     <% collection.each do |q34_1,qlabel| %>
+    <%= radio_button 'datum', 'q34_1', q34_1 %>
+    <%= label_tag "datum_q34_1_#{q34_1}", qlabel %>
+   <% end %>  
+   <br> (다른 곳)<br />
+     <% collection.each do |q34_2,qlabel| %>
+    <%= radio_button 'datum', 'q34_2', q34_2 %>
+    <%= label_tag "datum_q34_2_#{q34_2}", qlabel %>
+   <% end %>  </div>
+
+
   <div class="field">
-    <%= f.label :q13_1 %><br />
-    <%= f.text_field :q13_1 %>
+35. 나는 다른 곳의 개발자와 소통하기 위해 주로 
+    <%= f.text_field :q35 %> 를 사용한다. (예를 들면 전화, 이메일, 메신저, 미들웨어 등)
   </div>
+
+   <div class="explanation">
+다음은 조직간 관계에 대한 질문입니다. 가장 어울린다고 생각되는 답변을 골라 주십시오.
+  </div>
+
+
+
   <div class="field">
-    <%= f.label :q13_2 %><br />
-    <%= f.text_field :q13_2 %>
-  </div>
+36. 나는 내가 위치한 곳이 주가 되는 개발 조직이라고 생각한다.
+<br>
+     <% collection.each do |q36,qlabel| %>
+    <%= radio_button 'datum', 'q36', q36%>
+    <%= label_tag "datum_q36_#{q36}", qlabel %>
+   <% end %>  </div>
+
   <div class="field">
-    <%= f.label :q14_1 %><br />
-    <%= f.text_field :q14_1 %>
-  </div>
+37. 나는 내가 위치한 곳이 더 높은 개발 역량을 가지고 있다고 생각한다.
+<br>
+     <% collection.each do |q37,qlabel| %>
+    <%= radio_button 'datum', 'q37', q37%>
+    <%= label_tag "datum_q37_#{q37}", qlabel %>
+   <% end %>  </div>
+
+
   <div class="field">
-    <%= f.label :q14_2 %><br />
-    <%= f.text_field :q14_2 %>
+38. 나는 다른 곳의 개발 조직을 일년에 ~차례 가량 방문했다.
+<br>
+    <%= f.text_field :q38 %> 회
   </div>
-  <div class="field">
-    <%= f.label :q15_1 %><br />
-    <%= f.text_field :q15_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q15_2 %><br />
-    <%= f.text_field :q15_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q16_1 %><br />
-    <%= f.text_field :q16_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q16_2 %><br />
-    <%= f.text_field :q16_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q17_1 %><br />
-    <%= f.text_field :q17_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q17_2 %><br />
-    <%= f.text_field :q17_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q18_1 %><br />
-    <%= f.text_field :q18_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q18_2 %><br />
-    <%= f.text_field :q18_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q19_1 %><br />
-    <%= f.text_field :q19_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q19_2 %><br />
-    <%= f.text_field :q19_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q20_1 %><br />
-    <%= f.text_field :q20_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q20_2 %><br />
-    <%= f.text_field :q20_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q21_1 %><br />
-    <%= f.text_field :q21_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q21_2 %><br />
-    <%= f.text_field :q21_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q22_1 %><br />
-    <%= f.text_field :q22_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q22_2 %><br />
-    <%= f.text_field :q22_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q23_1 %><br />
-    <%= f.text_field :q23_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q23_2 %><br />
-    <%= f.text_field :q23_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q24 %><br />
-    <%= f.text_field :q24 %>
-  </div>
-  <div class="field">
-    <%= f.label :q25 %><br />
-    <%= f.text_field :q25 %>
-  </div>
-  <div class="field">
-    <%= f.label :q26_1 %><br />
-    <%= f.text_field :q26_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q26_2 %><br />
-    <%= f.text_field :q26_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q27_1 %><br />
-    <%= f.text_field :q27_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q27_2 %><br />
-    <%= f.text_field :q27_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q28_1 %><br />
-    <%= f.text_field :q28_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q28_2 %><br />
-    <%= f.text_field :q28_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q29_1 %><br />
-    <%= f.text_field :q29_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q29_2 %><br />
-    <%= f.text_field :q29_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q30_1 %><br />
-    <%= f.text_field :q30_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q30_2 %><br />
-    <%= f.text_field :q30_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q31_1 %><br />
-    <%= f.text_field :q31_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q31_2 %><br />
-    <%= f.text_field :q31_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q32_1 %><br />
-    <%= f.text_field :q32_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q32_2 %><br />
-    <%= f.text_field :q32_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q33_1 %><br />
-    <%= f.text_field :q33_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q33_2 %><br />
-    <%= f.text_field :q33_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q34_1 %><br />
-    <%= f.text_field :q34_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :q34_2 %><br />
-    <%= f.text_field :q34_2 %>
-  </div>
-  <div class="field">
-    <%= f.label :q35 %><br />
-    <%= f.text_area :q35 %>
-  </div>
-  <div class="field">
-    <%= f.label :q36 %><br />
-    <%= f.text_field :q36 %>
-  </div>
-  <div class="field">
-    <%= f.label :q37 %><br />
-    <%= f.text_field :q37 %>
-  </div>
-  <div class="field">
-    <%= f.label :q38 %><br />
-    <%= f.text_field :q38 %>
-  </div>
+
+   <div class="explanation">
+성실한 답변에 감사드립니다.  </div>
+
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '보내기' %>
   </div>
 <% end %>

@@ -4,7 +4,7 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
-    margin-left: 17em;
+    margin-left: 7em;
   padding-top: 4ex;
   padding-left: 2em;
   background: white;
@@ -15,7 +15,11 @@ p, ol, ul, td {
   font-size: 13px;
   line-height: 18px;
 }
-
+label{
+  background-color: #eee;
+  border: 1px solid gray;
+  padding: 1px;
+}
 pre {
   background-color: #eee;
   padding: 10px;
